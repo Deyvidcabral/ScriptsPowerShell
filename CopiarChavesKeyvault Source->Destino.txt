@@ -1,4 +1,4 @@
---Liberar Ip do PowerShell para Copia
+--Liberar Ip do PowerShell para Copia Quando ocorrer erro, ele deve mostrar o ip para ser liberado.
 --Passar Parametros para KeyVaultOrigem  e KeyVaultDestino
 Param(
     [Parameter(Mandatory)]
