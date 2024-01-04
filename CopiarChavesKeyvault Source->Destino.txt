@@ -1,0 +1,16 @@
+--Liberar Ip do PowerShell para Copia
+--Passar Parametros para KeyVaultOrigem  e KeyVaultDestino
+Param(
+    [Parameter(Mandatory)]
+    [string]$sourceVaultName = "KeyVaultOrigem",
+    [Parameter(Mandatory)]
+    [string]$destVaultName = "KeyVaultDestino"
+)
+
+Connect-AzAccount
+
+$secretNames = (Get-AzKeyVaultSecret -VaultName $sourceVaultName).Name
+$secretNames.foreach{
+    Set-AzKeyVaultSecret -VaultName $destVaultName -Name $_ `
+        -SecretValue (Get-AzKeyVaultSecret -VaultName $sourceVaultName -Name $_).SecretValue
+}
